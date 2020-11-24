@@ -1,6 +1,7 @@
 <html>
 
 	<head>
+		<title>Bouncing Donises</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<style>
 			img {
@@ -137,10 +138,10 @@
 						dv = 1;
 					}
 
-					let rgb = hsvToRgb(h, s, v);
-					let rgbStr = "rgb(" + Math.floor(rgb[0]) + "," + Math.floor(rgb[1]) + "," + Math.floor(rgb[2]) + ")";
+					// let rgb = hsvToRgb(h, s, v);
+					// let rgbStr = "rgb(" + Math.floor(rgb[0]) + "," + Math.floor(rgb[1]) + "," + Math.floor(rgb[2]) + ")";
 
-					body.style.backgroundColor = rgbStr;
+					// body.style.backgroundColor = rgbStr;
 
 					let height = innerHeight;
 					let width = innerWidth;
@@ -183,7 +184,7 @@
 		</script>
 	</head>
 
-	<body id="body" onload="load();" style="background-color: rgb(150, 142, 93); overflow: hidden; ">
+	<body id="body" onload="load();" style="background-image: url(img/background.jpg); background-size: 100vw 100vh; overflow: hidden; ">
 
 	</body>
 
