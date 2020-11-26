@@ -18,11 +18,11 @@
 				"Winkie.png", //
 				"Heather.png", //
 				"Marc.png", //
-				"Minka.png", //
-				"Victor.png" //
+				"Minka 2020.png", //
+				"Victor 2020.png" //
 			];
 
-			let size = 300;
+			const size = 220;
 
 			Math.sign = Math.sign || function (x) {
 				x = +x; // convert to a number
@@ -32,49 +32,49 @@
 				return x > 0 ? 1 : -1;
 			}
 
-			/**
-			 * Converts an HSV color value to RGB. Conversion formula
-			 * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
-			 * Assumes h, s, and v are contained in the set [0, 1] and
-			 * returns r, g, and b in the set [0, 255].
-			 *
-			 * @param   Number  h       The hue
-			 * @param   Number  s       The saturation
-			 * @param   Number  v       The value
-			 * @return  Array           The RGB representation
-			 */
-			function hsvToRgb(h, s, v) {
-				let r, g, b;
+			// /**
+			//  * Converts an HSV color value to RGB. Conversion formula
+			//  * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
+			//  * Assumes h, s, and v are contained in the set [0, 1] and
+			//  * returns r, g, and b in the set [0, 255].
+			//  *
+			//  * @param   Number  h       The hue
+			//  * @param   Number  s       The saturation
+			//  * @param   Number  v       The value
+			//  * @return  Array           The RGB representation
+			//  */
+			// function hsvToRgb(h, s, v) {
+			// 	let r, g, b;
 
-				let i = Math.floor(h * 6);
-				let f = h * 6 - i;
-				let p = v * (1 - s);
-				let q = v * (1 - f * s);
-				let t = v * (1 - (1 - f) * s);
+			// 	let i = Math.floor(h * 6);
+			// 	let f = h * 6 - i;
+			// 	let p = v * (1 - s);
+			// 	let q = v * (1 - f * s);
+			// 	let t = v * (1 - (1 - f) * s);
 
-				switch (i % 6) {
-					case 0:
-						r = v, g = t, b = p;
-						break;
-					case 1:
-						r = q, g = v, b = p;
-						break;
-					case 2:
-						r = p, g = v, b = t;
-						break;
-					case 3:
-						r = p, g = q, b = v;
-						break;
-					case 4:
-						r = t, g = p, b = v;
-						break;
-					case 5:
-						r = v, g = p, b = q;
-						break;
-				}
+			// 	switch (i % 6) {
+			// 		case 0:
+			// 			r = v, g = t, b = p;
+			// 			break;
+			// 		case 1:
+			// 			r = q, g = v, b = p;
+			// 			break;
+			// 		case 2:
+			// 			r = p, g = v, b = t;
+			// 			break;
+			// 		case 3:
+			// 			r = p, g = q, b = v;
+			// 			break;
+			// 		case 4:
+			// 			r = t, g = p, b = v;
+			// 			break;
+			// 		case 5:
+			// 			r = v, g = p, b = q;
+			// 			break;
+			// 	}
 
-				return [r * 255, g * 255, b * 255];
-			};
+			// 	return [r * 255, g * 255, b * 255];
+			// }
 
 			let h = 0, s = 0, v = 0;
 			let dh = 1, ds = 1, dv = 1;
@@ -87,11 +87,11 @@
 			let rotDirection = [];
 
 			function load() {
-				let body = document.getElementById("body");
+				const body = document.getElementById("body");
 
 				let html = "";
 				for (let i = 0; i < images.length; i++) {
-					let image = images[i];
+					const image = images[i];
 					html += `<img id="image${i}" src="img/${image}" />`;
 					imageX[i] = Math.floor(Math.random() * body.clientWidth);
 					imageY[i] = Math.floor(Math.random() * 0.2 * body.clientHeight);
@@ -108,12 +108,12 @@
 				body.innerHTML += html;
 
 				for (let i = 0; i < images.length; i++) {
-					let image = document.getElementById("image" + i);
+					const image = document.getElementById("image" + i);
 					image.style.width = size + "px";
 					image.style.height = size + "px";
 				}
 
-				setInterval(function () {
+				setInterval(() => {
 					t++;
 					h += dh * 0.0008;
 					if (h > 1) {
@@ -145,13 +145,13 @@
 
 					// body.style.backgroundColor = rgbStr;
 
-					let height = innerHeight;
-					let width = innerWidth;
+					const height = innerHeight;
+					const width = innerWidth;
 
 					for (let i = 0; i < images.length; i++) {
-						let image = document.getElementById("image" + i);
+						const image = document.getElementById("image" + i);
 
-						let prevVel = yVel[i];
+						const prevVel = yVel[i];
 						yVel[i] += 0.1;
 
 						if (Math.sign(prevVel) != Math.sign(yVel[i]) && imageY[i] > height - size - 200) {
@@ -197,6 +197,7 @@
 				box-shadow: 0px 0px 22px 20px #fff;
 				opacity: 0.9;
 				padding: 18px;
+				/* background-color: #fff; */
 			}
 
 		</style>
