@@ -13,7 +13,7 @@
 		</style>
 
 		<script>
-			let images = [ //
+			const images = [ //
 				// "Rosa.png", //  RIP :(
 				"Mouska.png",
 				"Tiki.png",
@@ -81,15 +81,27 @@
 			let h = 0, s = 0, v = 0;
 			let dh = 1, ds = 1, dv = 1;
 			let imageY = [], imageX = [];
-			let dx = [], dy = [];
-			let xVel = [], yVel = [];
-			let rot = [];
-			let rotVel = [];
+			const dx = [], dy = [];
+			const xVel = [], yVel = [];
+			const rot = [];
+			const rotVel = [];
 			let t = 0;
-			let rotDirection = [];
+			const rotDirection = [];
 
 			function load() {
+				for (const image of images) {
+					new Image().src = `img/${image}`;
+				}
+			}
+
+			function start() {
 				const body = document.getElementById("body");
+
+				const audio = new Audio("snowman-dance.mp3");
+				audio.play();
+
+				document.getElementById("text").style.display = "block";
+				document.getElementById("start-button").style.display = "none";
 
 				let html = "";
 				for (let i = 0; i < images.length; i++) {
@@ -183,7 +195,7 @@
 						image.style.left = imageX[i] + "px";
 						image.style.transform = "rotate(" + rot[i] + "deg)"
 					}
-				}, 12);
+				}, 20);
 			};
 		</script>
 
@@ -202,7 +214,8 @@
 				/* background-color: #fff; */
 			}
 
-			#header {
+			#text {
+				display: none;
 				font-family: Dancing Script;
 				font-size: 40vh;
 				text-shadow: #ddf 8px 8px;
@@ -210,12 +223,30 @@
 				text-align: center;
 			}
 
+			#start-button {
+				font-family: Dancing Script;
+				font-size: 8vh;
+				position: absolute;
+				top: 20vh;
+				height: 22vh;
+				width: 25vw;
+				margin-left: 38.5vw;
+				border-radius: 12px;
+				background-color: white;
+				box-shadow: 0px 0px 22px 20px #fff;
+				cursor: pointer;
+			}
+
+			#start-button:hover {
+				background-color: #eef;
+			}
+
 		</style>
 	</head>
 
-	<body id="body" onload="load();">
-		<div id="header">Happy Holidays!</div>
-
+	<body id="body" onload="load()">
+		<div id="text">Happy Holidays!</div>
+		<button id="start-button" onClick="start()">Get this party started!</button>
 	</body>
 
 </html>
