@@ -80,8 +80,8 @@
 
 			let h = 0, s = 0, v = 0;
 			let dh = 1, ds = 1, dv = 1;
-			let imageY = [], imageX = [];
 			let t = 0;
+			const imageY = [], imageX = [];
 			const dx = [], dy = [];
 			const xVel = [], yVel = [];
 			const rot = [];
@@ -95,7 +95,7 @@
 			}
 
 			function start() {
-				const body = document.getElementById("body");
+				// const body = document.getElementById("body");
 
 				const audio = new Audio("snowman-dance.mp3");
 				audio.loop = true;
@@ -108,8 +108,8 @@
 				for (let i = 0; i < images.length; i++) {
 					const image = images[i];
 					html += `<img id="image${i}" src="img/${image}" />`;
-					imageX[i] = Math.floor(Math.random() * body.clientWidth);
-					imageY[i] = Math.floor(Math.random() * 0.2 * body.clientHeight);
+					imageX[i] = Math.floor(Math.random() * innerWidth);
+					imageY[i] = Math.floor(Math.random() * 0.2 * innerHeight);
 					// 			imageY[i] = Math.floor(Math.random() * body.clientHeight);
 					dx[i] = 1;
 					dy[i] = 1;
@@ -168,7 +168,7 @@
 
 						if (Math.sign(prevVel) != Math.sign(yVel[i]) && imageY[i] > innerHeight - size - 200) {
 							// give a boost
-							imageY[i] = Math.random() * 0.2 * body.clientHeight;
+							imageY[i] = Math.random() * 0.2 * innerHeight;
 						}
 
 						imageY[i] += dy[i] * yVel[i];
@@ -181,7 +181,7 @@
 						}
 
 						imageX[i] += dx[i] * xVel[i];
-						if (imageX[i] > innerWidth - size) {
+						if (imageX[i] >= innerWidth - size) {
 							dx[i] = -1;
 						} else if (imageX[i] < 0) {
 							dx[i] = 1;
@@ -224,7 +224,7 @@
 			#start-button {
 				text-align: center;
 				font-family: Dancing Script;
-				font-size: 8vh;
+				font-size: 6vh;
 				position: absolute;
 				top: 20vh;
 				/* height: 22vh; */
