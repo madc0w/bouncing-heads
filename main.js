@@ -30,6 +30,7 @@ const xVel = [], yVel = [];
 const rot = [];
 const rotVel = [];
 const rotDirection = [];
+const tStart = [];
 
 function load() {
 	for (const image of images) {
@@ -42,7 +43,7 @@ function start() {
 
 	const audio = new Audio("snowman-dance.mp3");
 	audio.loop = true;
-	// audio.play();
+	audio.play();
 
 	document.getElementById("text").style.display = "block";
 	document.getElementById("start-button").style.display = "none";
@@ -71,11 +72,14 @@ function start() {
 		image.style.height = size + "px";
 	}
 
-	setInterval(() => {
-		t++;
-		for (let i = 0; i < images.length; i++) {
-			const image = document.getElementById("image" + i);
+	requestAnimationFrame(draw);
+}
 
+function draw() {
+	requestAnimationFrame(draw);
+	t++;
+	for (let i = 0; i < images.length; i++) {
+		if (tStart[i]) {
 			const prevVel = yVel[i];
 			yVel[i] += 0.1;
 
@@ -100,15 +104,16 @@ function start() {
 				dx[i] = 1;
 			}
 
-			rot[i] = rotDirection[i] * Math.sin(t * rotVel[i]);
-
-			image.style.top = imageY[i] + "px";
-			image.style.left = imageX[i] + "px";
-			image.style.transform = "rotate(" + rot[i] + "deg)"
+			rot[i] = rotDirection[i] * Math.sin((t - tStart[i]) * rotVel[i]);
+		} else if (Math.random() < 0.02) {
+			tStart[i] = t;
 		}
-	}, 20);
+		const image = document.getElementById("image" + i);
+		image.style.top = imageY[i] + "px";
+		image.style.left = imageX[i] + "px";
+		image.style.transform = "rotate(" + rot[i] + "deg)"
+	}
 }
-
 // /**
 //  * Converts an HSV color value to RGB. Conversion formula
 //  * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
