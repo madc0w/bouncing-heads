@@ -11,7 +11,7 @@ const images = [ //
 
 const height = innerHeight;
 const width = innerWidth;
-const size = width * 0.12;
+const size = 12;
 
 Math.sign = Math.sign || function (x) {
 	x = +x; // convert to a number
@@ -52,14 +52,14 @@ function start() {
 	for (let i = 0; i < images.length; i++) {
 		const image = images[i];
 		html += `<img id="image${i}" src="img/${image}" />`;
-		imageX[i] = Math.floor(Math.random() * width);
-		imageY[i] = Math.floor(Math.random() * 0.2 * height);
+		imageX[i] = Math.floor(Math.random() * 100);
+		imageY[i] = Math.floor(Math.random() * 20);
 		// 			imageY[i] = Math.floor(Math.random() * body.clientHeight);
 		dx[i] = 1;
 		dy[i] = 1;
-		xVel[i] = 4 * Math.random();
+		xVel[i] = Math.random();
 		// 			yVel[i] = Math.random();
-		yVel[i] = Math.random() * 0.1;
+		yVel[i] = Math.random() * 0.002;
 		rot[i] = 0;
 		rotVel[i] = (1 + Math.random()) / 50;
 		rotDirection[i] = (Math.random() - 0.5) * 200;
@@ -68,50 +68,55 @@ function start() {
 
 	for (let i = 0; i < images.length; i++) {
 		const image = document.getElementById("image" + i);
-		image.style.width = size + "px";
-		image.style.height = size + "px";
+		image.style.width = size + "vw";
+		image.style.height = size + "vw";
 	}
 
 	requestAnimationFrame(draw);
 }
 
+const yVelMax = 1.4;
 function draw() {
 	requestAnimationFrame(draw);
 	t++;
 	for (let i = 0; i < images.length; i++) {
 		if (tStart[i]) {
 			const prevVel = yVel[i];
-			yVel[i] += 0.1;
+			yVel[i] += 0.01;
 
-			if (Math.sign(prevVel) != Math.sign(yVel[i]) && imageY[i] > height - size - 200) {
+			if (Math.sign(prevVel) != Math.sign(yVel[i]) && imageY[i] > 60) {
 				// give a boost
-				imageY[i] = Math.random() * 0.2 * height;
+				yVel[i] += Math.sign(yVel[i]) * yVelMax;
+				// console.log('boost', yVel[i]);
 			}
-
 			imageY[i] += dy[i] * yVel[i];
-			if (imageY[i] > height - size) {
-				imageY[i] = height - size;
+			if (imageY[i] > 100 - size) {
+				imageY[i] = 100 - size;
 				yVel[i] *= -1;
-			} else if (imageY[i] < 0) {
+			} else if (imageY[i] <= 0) {
 				imageY[i] = 0;
 				yVel[i] *= -1;
 			}
 
 			imageX[i] += dx[i] * xVel[i];
-			if (imageX[i] >= width - size) {
+			if (imageX[i] >= 100 - size) {
 				dx[i] = -1;
 			} else if (imageX[i] < 0) {
 				dx[i] = 1;
 			}
+			if (Math.abs(yVel[i]) > yVelMax) {
+				yVel[i] = Math.sign(yVel[i]) * yVelMax;
+			}
+			yVel[i] *= 0.9994;
 
 			rot[i] = rotDirection[i] * Math.sin((t - tStart[i]) * rotVel[i]);
-		} else if (Math.random() < 0.02) {
+		} else if (Math.random() < 0.012) {
 			tStart[i] = t;
 		}
 		const image = document.getElementById("image" + i);
-		image.style.top = imageY[i] + "px";
-		image.style.left = imageX[i] + "px";
-		image.style.transform = "rotate(" + rot[i] + "deg)"
+		image.style.top = imageY[i] + "vh";
+		image.style.left = imageX[i] + "vw";
+		image.style.transform = `rotate(${rot[i]}deg)`
 	}
 }
 // /**
