@@ -12,7 +12,7 @@ const images = [ //
 const height = innerHeight;
 const width = innerWidth;
 const size = 12;
-const maxX = 92;
+const maxX = 100;
 
 Math.sign = Math.sign || function (x) {
 	x = +x; // convert to a number
