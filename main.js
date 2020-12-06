@@ -12,6 +12,7 @@ const images = [ //
 const height = innerHeight;
 const width = innerWidth;
 const size = 12;
+const maxX = 92;
 
 Math.sign = Math.sign || function (x) {
 	x = +x; // convert to a number
@@ -60,7 +61,7 @@ function start() {
 	for (let i = 0; i < images.length; i++) {
 		const image = images[i];
 		html += `<img id="image${i}" src="img/${image}" />`;
-		imageX[i] = Math.floor(Math.random() * 92);
+		imageX[i] = Math.floor(Math.random() * maxX);
 		imageY[i] = Math.floor(Math.random() * 20);
 		// 			imageY[i] = Math.floor(Math.random() * body.clientHeight);
 		dx[i] = 1;
@@ -107,7 +108,7 @@ function draw() {
 			}
 
 			imageX[i] += dx[i] * xVel[i];
-			if (imageX[i] >= 96 - size) {
+			if (imageX[i] >= maxX - size) {
 				dx[i] = -1;
 			} else if (imageX[i] < 0) {
 				dx[i] = 1;
