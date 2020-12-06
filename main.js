@@ -60,7 +60,7 @@ function start() {
 	for (let i = 0; i < images.length; i++) {
 		const image = images[i];
 		html += `<img id="image${i}" src="img/${image}" />`;
-		imageX[i] = Math.floor(Math.random() * 96);
+		imageX[i] = Math.floor(Math.random() * 92);
 		imageY[i] = Math.floor(Math.random() * 20);
 		// 			imageY[i] = Math.floor(Math.random() * body.clientHeight);
 		dx[i] = 1;
