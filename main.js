@@ -38,8 +38,6 @@ function load() {
 		new Image().src = `img/${image}`;
 	}
 
-	document.getElementById("body").style.width = innerWidth;
-
 	// document.addEventListener("touchmove", function (event) {
 	// 	if (event.scale !== 1) {
 	// 		event.preventDefault();
@@ -90,6 +88,7 @@ const yVelMax = 1.4;
 function draw() {
 	requestAnimationFrame(draw);
 	t++;
+	document.getElementById("body").style.width = innerWidth;
 	for (let i = 0; i < images.length; i++) {
 		if (tStart[i]) {
 			const prevVel = yVel[i];
