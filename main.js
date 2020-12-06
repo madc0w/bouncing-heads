@@ -37,13 +37,13 @@ function load() {
 		new Image().src = `img/${image}`;
 	}
 
-	document.addEventListener("touchmove", function (event) {
-		if (event.scale !== 1) {
-			event.preventDefault();
-		}
-	}, {
-		passive: false
-	});
+	// document.addEventListener("touchmove", function (event) {
+	// 	if (event.scale !== 1) {
+	// 		event.preventDefault();
+	// 	}
+	// }, {
+	// 	passive: false
+	// });
 }
 
 function start() {
@@ -60,7 +60,7 @@ function start() {
 	for (let i = 0; i < images.length; i++) {
 		const image = images[i];
 		html += `<img id="image${i}" src="img/${image}" />`;
-		imageX[i] = Math.floor(Math.random() * 100);
+		imageX[i] = Math.floor(Math.random() * 96);
 		imageY[i] = Math.floor(Math.random() * 20);
 		// 			imageY[i] = Math.floor(Math.random() * body.clientHeight);
 		dx[i] = 1;
@@ -107,7 +107,7 @@ function draw() {
 			}
 
 			imageX[i] += dx[i] * xVel[i];
-			if (imageX[i] >= 100 - size) {
+			if (imageX[i] >= 96 - size) {
 				dx[i] = -1;
 			} else if (imageX[i] < 0) {
 				dx[i] = 1;
