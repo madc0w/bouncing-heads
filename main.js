@@ -38,6 +38,8 @@ function load() {
 		new Image().src = `img/${image}`;
 	}
 
+	document.getElementById("body").style.width = innerWidth;
+
 	// document.addEventListener("touchmove", function (event) {
 	// 	if (event.scale !== 1) {
 	// 		event.preventDefault();
