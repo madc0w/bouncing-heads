@@ -36,6 +36,14 @@ function load() {
 	for (const image of images) {
 		new Image().src = `img/${image}`;
 	}
+
+	document.addEventListener("touchmove", function (event) {
+		if (event.scale !== 1) {
+			event.preventDefault();
+		}
+	}, {
+		passive: false
+	});
 }
 
 function start() {
