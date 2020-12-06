@@ -88,7 +88,6 @@ const yVelMax = 1.4;
 function draw() {
 	requestAnimationFrame(draw);
 	t++;
-	document.getElementById("body").style.width = innerWidth;
 	for (let i = 0; i < images.length; i++) {
 		if (tStart[i]) {
 			const prevVel = yVel[i];
